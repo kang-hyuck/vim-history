@@ -491,12 +491,8 @@ outstr(s)
 	if (bpos > BSIZE - 20)		/* avoid terminal strings being split up */
 		flushbuf();
 	if (s)
-#ifdef TERMCAP
-		tputs(s, 1, TPUTSFUNCAST outchar);
-#else
 		while (*s)
 			outchar(*s++);
-#endif
 }
 
 /* 

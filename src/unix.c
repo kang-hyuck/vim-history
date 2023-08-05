@@ -429,11 +429,11 @@ dirname(buf, len)
 {
 #if defined(SYSV_UNIX) || defined(USL) || defined(hpux) || defined(linux)
 	extern int		errno;
-	extern char		*sys_errlist[];
+	//extern char		*sys_errlist[];
 
 	if (getcwd((char *)buf, len) == NULL)
 	{
-	    STRCPY(buf, sys_errlist[errno]);
+	    //STRCPY(buf, sys_errlist[errno]);
 	    return FAIL;
 	}
     return OK;
@@ -1028,7 +1028,7 @@ remove(buf)
  * list_notfound is ignored
  */
 
-extern char *mktemp __ARGS((char *));
+//extern char *mkdtemp __ARGS((char *));
 #ifndef SEEK_SET
 # define SEEK_SET 0
 #endif
@@ -1080,7 +1080,7 @@ ExpandWildCards(num_pat, pat, num_file, file, files_only, list_notfound)
  * get a name for the temp file
  */
 	STRCPY(tmpname, TMPNAME2);
-	if (*mktemp((char *)tmpname) == NUL)
+	if (*mkdtemp((char *)tmpname) == NUL)
 	{
 		emsg(e_notmp);
 	    return FAIL;

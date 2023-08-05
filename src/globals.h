@@ -21,6 +21,8 @@
 # endif
 #endif
 
+#include <errno.h>
+
 /*
  * Number of Rows and Columns in the screen.
  * Must be long to be able to use them as options in param.c.

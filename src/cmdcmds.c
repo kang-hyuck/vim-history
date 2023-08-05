@@ -17,10 +17,10 @@
 #include "param.h"
 
 #if defined(LATTICE) || defined(NT)
-# define mktemp(a)	tmpnam(a)
+# define mkdtemp(a)	tmpnam(a)
 #endif
 
-extern char		*mktemp __ARGS((char *));
+extern char		*mkdtemp __ARGS((char *));
 
 /*
  * align text:
@@ -421,7 +421,7 @@ dofilter(line1, line2, buff, do_in, do_out)
 	STRCPY(otmp, TMPNAME2);
 #endif
 
-	if ((do_in && *mktemp((char *)itmp) == NUL) || (do_out && *mktemp((char *)otmp) == NUL))
+	if ((do_in && *mkdtemp((char *)itmp) == NUL) || (do_out && *mkdtemp((char *)otmp) == NUL))
 	{
 		emsg(e_notmp);
 		return;

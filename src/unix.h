@@ -60,66 +60,66 @@
 /*
  * prototypes for functions not in unix.c
  */
-#ifdef SCO
-int		chmod __ARGS((const char *, mode_t));
-#endif
-#if !defined(linux) && !defined(__NeXT) && !defined(M_UNIX) && !defined(ISC) && !defined(USL) && !defined(SOLARIS)
-int		remove __ARGS((const char *));
-/*
- * If you get an error message on "const" in the lines above, try
- * adding "-Dconst=" to the options in the makefile.
- */
-
-# if 0		/* should be in unistd.h */
-void	sleep __ARGS((int));
-# endif
-
-int		rename __ARGS((const char *, const char *));
-#endif
-
-int		stricmp __ARGS((char *, char *));
-
-/* memmove is not present on all systems, use our own version or bcopy */
-#if !defined(SCO) && !defined(SOLARIS) && !defined(AIX) && !defined(UTS4) && !defined(USL) && !defined(MIPS) && !defined(__NetBSD__) && !defined(linux)
-# ifdef SYSV_UNIX
-#   define MEMMOVE
-void *memmove __ARGS((void *, void *, int));
-# else
-#  define memmove(to, from, len) bcopy(from, to, len)
-#  if !(defined(hpux) && defined(__STDC__))
-#   ifdef linux
-extern void bcopy __ARGS((const void *, void *, int));
-#   else
-extern void bcopy __ARGS((char *, char *, int));
-#   endif
-#  endif
-# endif
-#endif
-
-#if defined(BSD_UNIX) && !defined(__STDC__)
-# define strchr(ptr, c)			index((ptr), (c))
-# define strrchr(ptr, c)		rindex((ptr), (c))
-#endif
-
-#ifdef BSD_UNIX
-# define memset(ptr, c, size)	bsdmemset((ptr), (c), (size))
-char *bsdmemset __ARGS((char *, int, long));
-#endif
-
-/*
- * Most unixes don't have these in include files.
- * If you get a "redefined" error, delete the offending line.
- */
-#if !defined(__NetBSD__)
-  extern int	ioctl __ARGS((int, int, ...));
-#endif
-extern int	fsync __ARGS((int));
-extern char *getwd __ARGS((char *));
-#if !defined(__NetBSD__)
-# ifdef linux
-   extern void bzero __ARGS((void *, int));
-# else
-   extern void bzero __ARGS((char *, int));
-# endif
-#endif
-extern int access __ARGS((char *, int));
+//#ifdef SCO
+//int		chmod __ARGS((const char *, mode_t));
+//#endif
+//#if !defined(linux) && !defined(__NeXT) && !defined(M_UNIX) && !defined(ISC) && !defined(USL) && !defined(SOLARIS)
+//int		remove __ARGS((const char *));
+///*
+// * If you get an error message on "const" in the lines above, try
+// * adding "-Dconst=" to the options in the makefile.
+// */
+//
+//# if 0		/* should be in unistd.h */
+//void	sleep __ARGS((int));
+//# endif
+//
+//int		rename __ARGS((const char *, const char *));
+//#endif
+//
+//int		stricmp __ARGS((char *, char *));
+//
+///* memmove is not present on all systems, use our own version or bcopy */
+//#if !defined(SCO) && !defined(SOLARIS) && !defined(AIX) && !defined(UTS4) && !defined(USL) && !defined(MIPS) && !defined(__NetBSD__) && !defined(linux)
+//# ifdef SYSV_UNIX
+//#   define MEMMOVE
+//void *memmove __ARGS((void *, void *, int));
+//# else
+//#  define memmove(to, from, len) bcopy(from, to, len)
+//#  if !(defined(hpux) && defined(__STDC__))
+//#   ifdef linux
+//extern void bcopy __ARGS((const void *, void *, int));
+//#   else
+//extern void bcopy __ARGS((char *, char *, int));
+//#   endif
+//#  endif
+//# endif
+//#endif
+//
+//#if defined(BSD_UNIX) && !defined(__STDC__)
+//# define strchr(ptr, c)			index((ptr), (c))
+//# define strrchr(ptr, c)		rindex((ptr), (c))
+//#endif
+//
+//#ifdef BSD_UNIX
+//# define memset(ptr, c, size)	bsdmemset((ptr), (c), (size))
+//char *bsdmemset __ARGS((char *, int, long));
+//#endif
+//
+///*
+// * Most unixes don't have these in include files.
+// * If you get a "redefined" error, delete the offending line.
+// */
+//#if !defined(__NetBSD__)
+//  extern int	ioctl __ARGS((int, int, ...));
+//#endif
+//extern int	fsync __ARGS((int));
+//extern char *getwd __ARGS((char *));
+//#if !defined(__NetBSD__)
+//# ifdef linux
+//   extern void bzero __ARGS((void *, int));
+//# else
+//   extern void bzero __ARGS((char *, int));
+//# endif
+//#endif
+//extern int access __ARGS((char *, int));
